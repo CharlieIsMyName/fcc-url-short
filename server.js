@@ -45,6 +45,8 @@ app.get("/new/*",function(req,res){
   });
 });
 
+app.get('/',express.static(__dirname+'/public'));
+
 app.get("/*",function(req,res){
   mongo.connect(dburl,function(err,db){
     if(err){
@@ -52,6 +54,8 @@ app.get("/*",function(req,res){
       res.end("failed to connect to cloub DB!");      //our data base entry is going to be {url,id}
       throw err;
     }
+    
+  
     
     var pathname=url.parse(req.url).pathname;
     pathname=pathname.substring(1,pathname.length);
